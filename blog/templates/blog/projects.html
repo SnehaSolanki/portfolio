@@ -1,6 +1,6 @@
+
 <!doctype html>
 <html lang="en">
-
   <head>
     {% load staticfiles %}
     <meta charset="utf-8">
@@ -8,8 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Sneha Manuel Solanki</title>
-
+    <title>Sneha's Projects</title>
 
     <!-- Bootstrap core CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -44,44 +43,39 @@
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" href="{% static 'Sneha_resume_aug.docx' %}">Resume<span class="sr-only">(current)</span></a>
             <a class="nav-item nav-link" href="http://www.linkedin.com/in/sneha-solanki-a36752136">LinkedIn</a>
-            <a class="nav-item nav-link" href="{% url 'projects' %}">Projects</a>
+            <a class="nav-item nav-link active" href="{% url 'projects' %}">Projects</a>
           </div>
         </div>
       </nav>
     </header>
 
 <main role="main">
+  <div class="container">
+    <h1 class="text-center pt-3">Welcome to my Project Exhibition.</h1>
+    <br>
+    <br>
+    <h2>Latest Posts</h2>
+    <hr>
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">SNEHA MANUEL SOLANKI</h1>
-      <p class="lead text-muted">Python | Django | Agile software development model | Analytics | Mainframe | Overall professional experience of 3.5 years</p>
-      <p>
-        <a href="mailto:snehamanuelsolanki@gmail.com" class="btn btn-primary my-2">Email: snehamanuelsolanki@gmail.com</a>
-      </p>
-      <img src="{% static 'Sneha_pic.JPG' %}" height="300" >
-    </div>
-  </section>
+    <div class="row">
 
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}" href=""</img>
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
+      {% for project in projects.all %}
+      <div class="col-md-4">
+        <div class="card mb-4 shadow-sm">
+          <a href="{% url 'detail' project.id %}"><h3>{{ project.title }}</h3></a>
+          {{ project.pub_date_only }}
+          <br>
+          <br>
+          <img class="card-img-top" src="{{ project.image.url }}"</img>
+          <div class="card-body">
+            <p class="card-text">{{ project.summary }}</p>
           </div>
         </div>
-        {% endfor %}
-
       </div>
-      <strong>To find further information about my job responsibilities please download my resume from the 'Resume' link on the top right corner.</strong>
+      {% endfor %}
+
     </div>
+
   </div>
 
 </main>
